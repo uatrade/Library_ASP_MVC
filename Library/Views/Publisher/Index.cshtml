@@ -1,0 +1,103 @@
+﻿@model Library.Models.AuthBookPublish
+@{
+    Layout = null;
+   
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" rel="stylesheet" href="../../Content/Site.css" />
+    <title>Publisher</title>
+</head>
+<body>
+    <h1 class="bibl">Библиотека</h1>
+    <div class="mainblock">
+        @Html.ValidationSummary()
+        <div class="mybloks">
+            <h2 class="addbook">Добавление Типографии</h2>
+            @using (Html.BeginForm("IndexPublisher", "Publisher", FormMethod.Post))
+            {
+                <div class="textbloks"><p>Типография: </p></div><p> @Html.TextBoxFor(x => x.publisher.Name, new { @class = "textbloks2" })</p>
+                <div class="textbloks"><input type="submit" value="Отправить" /></div>
+            }
+        </div>
+        <div class="mybloks">
+            <h2 class="addbook">Добавление Авторов</h2>
+
+            @using (Html.BeginForm("IndexAuthor", "Publisher", FormMethod.Post))
+            {
+                <div class="textbloks"><p>Имя:</p></div><p> @Html.TextBoxFor(x => x.author.Name, new { @class = "textbloks2" })</p>
+                <div class="textbloks"><p>Дата рождения:</p></div><p> @Html.TextBoxFor(x => x.author.DateBirth, new { @class = "textbloks2" })</p>
+                <div class="textbloks"><p>Дата смерти:</p></div><p> @Html.TextBoxFor(x => x.author.DateOfDeath, new { @class = "textbloks2" })</p>
+                <div class="textbloks"><input type="submit" value="Отправить" /></div>
+
+            }
+        </div>
+        <div class="mybloks">
+            <h2 class="addbook">Добавление книг</h2>
+            @using (Html.BeginForm("IndexBook", "Publisher", FormMethod.Post))
+            {     
+                <div class="textbloks"><p>Название:</p></div><div class="textbloks2"><p> @Html.TextBoxFor(x => x.book.Name)</p></div>
+
+                <div class="textbloks"><p>Дата публикации: </p></div><div class="textbloks2"><p> @Html.TextBoxFor(x => x.book.Date)</p></div>
+
+                <div class="textbloks"><p>Число страниц:</p></div><div class="textbloks2"><p> @Html.TextBoxFor(x => x.book.PageCount)</p></div>
+
+                <div class="textbloks"><p>ISBN:</p></div><div class="textbloks2"><p> @Html.TextBoxFor(x => x.book.ISBN)</p></div>
+
+                <div class="textbloks"><p>Автор:</p></div><div class="textbloks2"><p> @Html.DropDownListFor(x => x.book.AuthorBook.id, new SelectList(ViewBag.listSelect, "Value", "Text"), "-Select-")</p></div>
+ 
+                <div class="textbloks"><p>Типография:</p></div><div class="textbloks2"><p> @Html.DropDownListFor(x => x.book.Publisher.id, new SelectList(ViewBag.ListPublishSelect, "Value", "Text"), "-Select-")</p></div>
+                @Html.ValidationMessageFor(x=>x.book.Publisher.id)
+                <div class="textbloks"><input type="submit" value="Отправить" /></div>
+            }
+        </div>
+    </div>
+
+
+
+    <div class="lists">
+        <h2>Список Типографий:</h2>
+        @if (ViewBag.ListPublisher.Count > 0)
+        {
+            foreach (var item in ViewBag.ListPublisher)
+            {
+                <p>@item.Name | @Html.ActionLink("Удалить", "DelIndex", "Publisher", new { delpublisher = item.Name }, null)</p>
+            }
+        }
+        <h2>Список Авторов:</h2>
+        @if (ViewBag.ListAuthors.Count > 0)
+        {
+            foreach (var item in ViewBag.ListAuthors)
+            {
+                <p>id: @item.id</p>
+                <p>Имя: @item.Name | @Html.ActionLink("Удалить", "DelAuthor", "Publisher", new { id = item.id }, null)</p>
+                        <p>Дата Рождения: @item.DateBirth</p>
+                        <p>Дата Смерти: @item.DateOfDeath</p>
+                        <p>======================================</p>
+            }
+        }
+
+        <h2>Список Книг:</h2>
+        @if (ViewBag.listBooks.Count > 0)
+        {
+            foreach (var item in ViewBag.listBooks)
+            {
+                <p>id: @item.Id</p>
+                <p>Название: @item.Name | @Html.ActionLink("Удалить", "DelBook", "Publisher", new { id = item.Id }, null)</p>
+                        <p>Автор: @item.AuthorBook.Name </p>
+                        <p>Автор Id: @item.AuthorBook.id </p>
+                        <p>Дата публикации:: @item.Date</p>
+                        <p>Число страниц: @item.PageCount</p>
+                        <p>Типография: @item.Publisher.Name</p>
+                        <p>ISBN: @item.ISBN</p>
+                        <p>===========================================</p>
+            }
+        }
+
+    </div>
+</body>
+</html>

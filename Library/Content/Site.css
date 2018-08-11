@@ -1,0 +1,79 @@
+﻿body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color:aliceblue;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.bibl{
+    text-align:center;
+}
+.mainblock 
+{
+    width:480px;
+}
+.mybloks {
+    width: 450px;
+    /*height: 50px;*/
+    float: left;
+    margin-left: 5px;
+    padding-bottom: 40px;
+    border: 1px solid black;
+}
+.btn {
+    display: block;
+    position: relative;
+    top:15px;
+    left: 10px;
+}
+.lists {
+    display: block;
+    position: absolute;
+    top: 105px;
+    width: 400px;
+    /*height: 50px;*/
+    float: left;
+    margin-left: 600px;
+    padding-left:10px;
+    padding-bottom: 40px;
+    border: 1px solid black;
+}
+.textbloks {
+    float: left;
+    margin-right: 10px;
+    padding-left:10px;
+    width: 220px;
+}
+.textbloks2 {
+    float: left;
+    margin-right: 10px;
+    width: 180px;
+}
+
+.addbook {
+    position:inherit;
+    display:block;
+    top: 10px;
+    left: auto;
+    right: auto;
+    padding-left: 20px;
+}
+
